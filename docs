@@ -1,0 +1,40 @@
+Relatório de Atividade: Padrão Adapter (Sistema de Pagamentos)
+Dupla: [SEU NOME] e [NOME DA DUPLA] Link do Repositório: [COLE O LINK DO SEU GITHUB AQUI]
+
+1. Visão Geral da Solução
+O objetivo da atividade foi resolver a incompatibilidade entre o sistema legado (MPay - MercadoPapo) e a nova API de pagamentos (PPay - PayPal) utilizando o padrão de projeto Adapter. Foi criada a classe PPayAdapter, que implementa a interface esperada pelo novo sistema (PPay), mas delega internamente as chamadas para o objeto legado (MPay), realizando as conversões de dados necessárias.
+
+2. Documentação do Uso de IA
+Conforme solicitado, utilizamos IA generativa (Gemini/ChatGPT) para auxiliar no desenvolvimento passo a passo. Abaixo detalhamos o processo:
+
+Passo 1: Estruturação do Projeto
+Prompt Utilizado: "Vou mandar o problema, quero que primeiro voce faça as pastas necessarias para o projeto... depois me envie as pastas, depois vamos para o codigo."
+
+Ação da IA: A IA analisou os arquivos fornecidos e sugeriu a estrutura de diretórios src/pagamento/ para organizar os pacotes Java corretamente.
+
+Ajustes Manuais: Foi necessário garantir que a declaração package pagamento; estivesse presente no topo de todos os arquivos (MPay.java, PPay.java, etc.) para evitar erros de compilação no VS Code.
+
+Passo 2: Implementação do Adapter
+Prompt Utilizado: "Gere a classe PPayAdapter.java que implementa PPay mas consome MPay, tratando as diferenças de tipos."
+
+Solução da IA: A IA gerou a classe PPayAdapter.
+
+Análise e Ajustes na Lógica:
+
+Problema de Datas: O MPay usava Mês e Ano separados, enquanto o PPay exigia uma string única. A solução da IA concatenou as strings (mes + "/" + ano), o que foi aceito como solução válida.
+
+Problema de Tipos (CVV): O MPay usava Short e o PPay usava Integer. A IA sugeriu o uso de .intValue() ou casting. Validamos que o casting explícito era necessário para manter a integridade dos dados sem erros de compilação.
+
+Passo 3: Testes e Validação
+Prompt Utilizado: "Crie a classe Main.java com o método testPPay exigido no enunciado para provar que funciona."
+
+Resultado: A IA gerou a classe Main instanciando o objeto legado e passando-o pelo Adapter.
+
+Execução: O teste confirmou que os dados (como "Maria Oliveira" e a data "10/2030") foram adaptados corretamente.
+
+3. Histórico de Commits ("A História da Solução")
+O repositório conta a história da evolução do código através de 3 commits principais e atômicos:
+
+Infra: Commit inicial que estabelece o cenário do problema (arquivos originais MPay/PPay).
+
+Feat: Implementação da solução (criação do PPayAdapter) focada na lógica de conversão.
